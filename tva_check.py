@@ -235,7 +235,10 @@ def controle_ventes(df: pd.DataFrame) -> pd.DataFrame:
     res["frais_bancaire"] = somme(rem == R_FRAIS)
     res["retenu"] = (res["rapproche_lettre"] + res["impay"] + res["etape_interm"]
                      + res["reclassement"] - res["frais_bancaire"]).round(2)
-    res["ecart"] = (res["retenu"].abs() - res["montant_signe"].abs()).round(2)
+    # res["ecart"] = (res["retenu"].abs() - res["montant_signe"].abs()).round(2)
+    
+    res["ecart"] = (res["retenu"] - res["montant_signe"]).round(2)
+
 
     return res.reset_index()
 
